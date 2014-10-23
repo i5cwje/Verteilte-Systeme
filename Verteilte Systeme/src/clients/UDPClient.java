@@ -19,7 +19,8 @@ public class UDPClient {
 	private final static int PACKETSIZE = 1024;
 	private static long lastTime;
 	private static long sendTime;
-	private static String line;
+	private static String line; 
+	
 	private static InetAddress destination;
 	private static DatagramSocket toSocket;
 	private static DatagramPacket packet;
