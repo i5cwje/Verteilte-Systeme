@@ -20,6 +20,7 @@ public class UDPClient {
 	private static long lastTime;
 	private static long sendTime;
 	private static String line;
+	
 	private static InetAddress destination;
 	private static DatagramSocket toSocket;
 	private static DatagramPacket packet;
