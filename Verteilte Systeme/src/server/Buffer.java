@@ -1,5 +1,9 @@
 package server;
 
+/*
+@author Pascal Bechtoldt
+*/
+
 import java.util.Vector;
 
 class Message {
@@ -17,7 +21,7 @@ public class Buffer {
 		
 	public synchronized void put(String text) {
 		String[] parts = text.split(" ");
-		
+		//TODO Falls mehr Infos kommen erweiterbar machen!!
 		int temp = Integer.parseInt(parts[1]);
 		int pow = Integer.parseInt(parts[2].trim());
 		boolean setInfo = false;

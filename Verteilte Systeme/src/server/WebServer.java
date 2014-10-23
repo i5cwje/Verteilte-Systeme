@@ -1,5 +1,9 @@
 package server;
 
+/*
+@author Pascal Bechtoldt
+*/
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -12,6 +16,9 @@ import com.sun.net.httpserver.HttpServer;
 
 public class WebServer extends Thread{
 	static Buffer buffer = null;
+	private static int port = 2000;
+	
+	
 	
 	public WebServer(Buffer b){
 		buffer = b;
@@ -20,34 +27,24 @@ public class WebServer extends Thread{
 	public void run(){
 		HttpServer server = null;
 		try {
-			server = HttpServer.create(new InetSocketAddress(9000), 0);
+			server = HttpServer.create(new InetSocketAddress(port), 0);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        server.createContext("/virus", new MyHandler());
-        server.createContext("/killer", new MySecondHandler());
+        server.createContext("/room", new MyHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
 	}
-
+	//TODO Ich muss auf einzelne räume zugreifen können
     static class MyHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
         	Vector<Message> info = buffer.get();
         	String out = "";
         	for(int i=0; i<info.size(); i++){
-        		out += info.elementAt(i).room + " " + info.elementAt(i).temperature + " " + info.elementAt(i).powerUsage + "<br>";
+        		out += info.elementAt(i).room + " " + info.elementAt(i).temperature + " " + info.elementAt(i).powerUsage + "\n";
         	}
             String response = out;
-            t.sendResponseHeaders(200, response.length());
-            OutputStream os = t.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
-        }
-    }
-    static class MySecondHandler implements HttpHandler {
-        public void handle(HttpExchange t) throws IOException {
-            String response = "kuck kuck who is there me i Kill your mom";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());

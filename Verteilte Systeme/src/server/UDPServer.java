@@ -1,5 +1,7 @@
 package server;
-
+/*
+	@author Pascal Bechtoldt, Can Kedik
+*/
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.DatagramPacket;
@@ -9,18 +11,18 @@ import java.util.Arrays;
 
 public class UDPServer extends Thread{
 	Buffer buffer;
+	private final static int PACKETSIZE = 1024;
+	private static int port = 1235;
 	
 	public UDPServer(Buffer b){
 		buffer = b;
 	}
 	@SuppressWarnings("resource")
 	public void run(){
-        int portUDP = 9999;
-        int packetSize = 1024;
         
         DatagramSocket socketUDP = null;
 		try {
-			socketUDP = new DatagramSocket(portUDP);
+			socketUDP = new DatagramSocket(port);
 		} catch (SocketException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -28,7 +30,7 @@ public class UDPServer extends Thread{
         
         while (true){
             
-            DatagramPacket packet = new DatagramPacket( new byte[packetSize], packetSize );
+            DatagramPacket packet = new DatagramPacket( new byte[PACKETSIZE], PACKETSIZE );
             try {
 				socketUDP.receive(packet);
 			} catch (IOException e) {
@@ -45,7 +47,6 @@ public class UDPServer extends Thread{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			//System.out.println(receivedText);
 			buffer.put(receivedText);
         }
 	}

@@ -23,7 +23,7 @@ public class UDPClient {
 	private static InetAddress destination;
 	private static DatagramSocket toSocket;
 	private static DatagramPacket packet;
-	private static int port = 9998;
+	private static int port = 1235;
 	private static String IP = "192.168.2.104";
 	private static String whereAmI;
 
