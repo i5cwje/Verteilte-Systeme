@@ -15,13 +15,13 @@ import com.sun.net.httpserver.HttpServer;
 
 
 public class WebServer extends Thread{
-	static Buffer buffer = null;
+	static Connection connection = null;
 	private static int port = 2000;
 	
 	
 	
-	public WebServer(Buffer b){
-		buffer = b;
+	public WebServer(Connection b){
+		connection = b;
 	}
 	
 	public void run(){
@@ -39,7 +39,7 @@ public class WebServer extends Thread{
 	//TODO Ich muss auf einzelne räume zugreifen können
     static class MyHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-        	Vector<Message> info = buffer.get();
+        	Vector<Message> info = connection.get();
         	String out = "";
         	for(int i=0; i<info.size(); i++){
         		out += info.elementAt(i).room + " " + info.elementAt(i).temperature + " " + info.elementAt(i).powerUsage + "\n";

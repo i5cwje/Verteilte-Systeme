@@ -10,11 +10,11 @@ import java.net.SocketException;
 import java.util.Arrays;
 
 public class UDPServer extends Thread{
-	Buffer buffer;
+	Connection buffer;
 	private final static int PACKETSIZE = 1024;
 	private static int port = 1235;
 	
-	public UDPServer(Buffer b){
+	public UDPServer(Connection b){
 		buffer = b;
 	}
 	@SuppressWarnings("resource")
