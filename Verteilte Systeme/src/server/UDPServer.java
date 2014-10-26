@@ -10,19 +10,20 @@ import java.net.SocketException;
 import java.util.Arrays;
 
 public class UDPServer extends Thread{
-	Connection buffer;
+	Connection connection;
 	private final static int PACKETSIZE = 1024;
-	private static int port = 1235;
+	private int PORT;
 	
-	public UDPServer(Connection b){
-		buffer = b;
+	public UDPServer(Connection c, int port){
+		connection = c;
+		PORT = port;
 	}
 	@SuppressWarnings("resource")
 	public void run(){
         
         DatagramSocket socketUDP = null;
 		try {
-			socketUDP = new DatagramSocket(port);
+			socketUDP = new DatagramSocket(PORT);
 		} catch (SocketException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -47,7 +48,7 @@ public class UDPServer extends Thread{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			buffer.put(receivedText);
+			connection.put(receivedText);
         }
 	}
 }

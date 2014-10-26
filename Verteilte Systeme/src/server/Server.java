@@ -6,9 +6,11 @@ package server;
 
 public class Server {
 	public static void main(String[] args) {
+		int PortWebServer = 2000;
+		int PortUDPServer = 1235;
 		Connection b = new Connection();
-		WebServer ws = new WebServer(b);
-		UDPServer us = new UDPServer(b);
+		WebServer ws = new WebServer(b, PortWebServer);
+		UDPServer us = new UDPServer(b, PortUDPServer);
 		us.start();
 		ws.start();
 	}
