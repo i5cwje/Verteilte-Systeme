@@ -28,14 +28,14 @@ public class Connection {
 	public synchronized void put(String text) {
 		String[] parts = text.split(" ");
 		
-		int temperature = Integer.parseInt(parts[1]);
-		int powerUsage = Integer.parseInt(parts[2].trim());
+		int temperature = Integer.parseInt(parts[2]);
+		int powerUsage = Integer.parseInt(parts[3].trim());
 		//..
 		
 		boolean setInfo = false;
-		for(int i=0; i<roomInformations.size(); i++)
+		for(int i=1; i<roomInformations.size(); i++)
 		{
-			if(roomInformations.elementAt(i).room.equals(parts[0]))
+			if(roomInformations.elementAt(i).room.equals(parts[1]))
 			{
 				roomInformations.elementAt(i).temperature = temperature;
 				roomInformations.elementAt(i).powerUsage = powerUsage;
@@ -47,7 +47,7 @@ public class Connection {
 		}
 		if(!setInfo)
 		{
-			Message message = new Message(parts[0], temperature, powerUsage);
+			Message message = new Message(parts[1], temperature, powerUsage);
 			roomInformations.add(message);
 		}
 	}
