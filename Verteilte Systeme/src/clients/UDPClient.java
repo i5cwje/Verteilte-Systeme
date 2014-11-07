@@ -6,9 +6,7 @@ package clients;
 
 /**
  *
- * @author Can Kedik
- * Computer Science Dept.                   Fachbereich Informatik
- * Darmstadt Univ. of Applied Sciences      Hochschule Darmstadt
+ * @author Pascal Bechtoldt
  */
 
 import java.io.*;
@@ -23,10 +21,9 @@ public class UDPClient {
 	private static InetAddress destination;
 	private static DatagramSocket toSocket;
 	private static DatagramPacket packet;
-	private static int port = 1235;
+	private static int port = 9998;
 	private static String IP = "localhost";
 	private static String whereAmI;
-	private static int count = 1;
 
 	public static void main(String[] args) throws Exception {
 		destination = InetAddress.getByName(IP);
@@ -38,7 +35,7 @@ public class UDPClient {
 
 		while (true) {
 			sendTime += (int) (getDelta());
-			if (sendTime >= 1000) {
+			if (sendTime >= 5000) {
 				sendTime = 0;
 				packet.setData(giveRandomNumbers());
 				toSocket.send(packet);
@@ -47,7 +44,7 @@ public class UDPClient {
 	}
 
 	// Als erstes Ort, Temperatur und dann Stromverbrauch
-	private static byte[] giveRandomNumbers(){
+	private static byte[] giveRandomNumbers(){	  
 	 byte[] data = new byte[PACKETSIZE];
 	 String informationDump;
 	 String buf;
@@ -58,7 +55,7 @@ public class UDPClient {
 	 buf=informationDump +" "+ String.valueOf(temperature)
 			 +" "+String.valueOf(powerUsage);
 	 System.out.println(buf);
-
+	 
 	 for (int i=0;i<buf.length();i++){
 		 data[i]=(byte) buf.charAt(i);
 	 }
