@@ -1,5 +1,9 @@
 package server;
 
+/*
+@author Pascal Bechtoldt
+*/
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -11,43 +15,38 @@ import com.sun.net.httpserver.HttpServer;
 
 
 public class WebServer extends Thread{
-	static Buffer buffer = null;
+	static Connection connection = null;
+	private int PORT;
 	
-	public WebServer(Buffer b){
-		buffer = b;
+	
+	
+	public WebServer(Connection c, int port){
+		connection = c;
+		PORT = port;
 	}
 	
 	public void run(){
 		HttpServer server = null;
 		try {
-			server = HttpServer.create(new InetSocketAddress(9000), 0);
+			server = HttpServer.create(new InetSocketAddress(PORT), 0);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        server.createContext("/virus", new MyHandler());
-        server.createContext("/killer", new MySecondHandler());
+        server.createContext("/rooms", new MyHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
 	}
-
+	//TODO Ich muss auf einzelne räume zugreifen können
     static class MyHandler implements HttpHandler {
         public void handle(HttpExchange t) throws IOException {
-        	Vector<Message> info = buffer.get();
-        	String out = "";
+        	Vector<Message> info = connection.get();
+        	String out = "Raum \t\t Temperatur \t PowerUsage \n";
+        	out += "----------------------------------------------\n";
         	for(int i=0; i<info.size(); i++){
-        		out += info.elementAt(i).room + " " + info.elementAt(i).temperature + " " + info.elementAt(i).powerUsage + "<br>";
+        		out += info.elementAt(i).room + " \t\t " + info.elementAt(i).temperature + " \t\t " + info.elementAt(i).powerUsage + "\n";
         	}
             String response = out;
-            t.sendResponseHeaders(200, response.length());
-            OutputStream os = t.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
-        }
-    }
-    static class MySecondHandler implements HttpHandler {
-        public void handle(HttpExchange t) throws IOException {
-            String response = "kuck kuck who is there me i Kill your mom";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();
             os.write(response.getBytes());

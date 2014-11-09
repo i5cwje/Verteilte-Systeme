@@ -6,9 +6,7 @@ package clients;
 
 /**
  *
- * @author Can Kedik
- * Computer Science Dept.                   Fachbereich Informatik
- * Darmstadt Univ. of Applied Sciences      Hochschule Darmstadt
+ * @author Pascal Bechtoldt
  */
 
 import java.io.*;
@@ -24,7 +22,7 @@ public class UDPClient {
 	private static DatagramSocket toSocket;
 	private static DatagramPacket packet;
 	private static int port = 9998;
-	private static String IP = "192.168.2.104";
+	private static String IP = "localhost";
 	private static String whereAmI;
 
 	public static void main(String[] args) throws Exception {
