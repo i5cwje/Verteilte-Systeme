@@ -70,7 +70,7 @@ public class UDPServer extends Thread{
 				e.printStackTrace();
 			}
 			connection.put(receivedText);
-		    logger.info(receivedText); 
+		    logger.info(receivedText.trim()); 
         }
 	}
 }
