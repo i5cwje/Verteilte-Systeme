@@ -28,7 +28,7 @@ public class UDPServer extends Thread{
 	    try {  
 
 	        // This block configure the logger with handler and formatter  
-	        fh = new FileHandler("/home/coolpharaoh/Desktop/MyLogFile.log");  
+	        fh = new FileHandler("/home/can/Schreibtisch/MyLogFile.log");  
 	        logger.addHandler(fh);
 	        SimpleFormatter formatter = new SimpleFormatter();  
 	        fh.setFormatter(formatter);  
