@@ -21,7 +21,7 @@ public class UDPClient {
 	private static DatagramSocket toSocket;
 	private static DatagramPacket packet;
 	private static int port = 9997;
-	private static String IP = "192.168.2.104";
+	private static String IP = "141.100.75.215";
 	private static String whereAmI;
 	private static int packetNumber = 0;
 
@@ -37,7 +37,7 @@ public class UDPClient {
 		while (true) {
 			sendTime += getDelta();
 			System.out.println(sendTime + " " + packetNumber);
-			if (sendTime >= 2) {
+			if (sendTime >= 3.47f) {
 				sendTime = 0;
 				packet.setData(giveRandomNumbers());
 				toSocket.send(packet);
