@@ -11,7 +11,7 @@ public class HausverwalterServer {
 
 	private static final int PORT = 8080;
 	
-	public String updateMyFuckingTable(){
+	public String updateMyTable(){
 		String antwort = "Can ist der King auf dem Planeten, den ihr könnt mich am Arsch lecken";
 		return antwort;
 	}
@@ -24,7 +24,7 @@ public class HausverwalterServer {
 			XmlRpcServer xmlRpcServer = webServer.getXmlRpcServer();
 			PropertyHandlerMapping phm = new PropertyHandlerMapping();
 			
-			phm.addHandler("BananenSindLecker", HausverwalterServer.class);
+			phm.addHandler("Hausverwalter", HausverwalterServer.class);
 			xmlRpcServer.setHandlerMapping(phm);
 			XmlRpcServerConfigImpl serverConfig = (XmlRpcServerConfigImpl) xmlRpcServer
 					.getConfig();
