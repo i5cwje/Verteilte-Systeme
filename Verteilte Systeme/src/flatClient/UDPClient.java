@@ -1,4 +1,4 @@
-package clients;
+package flatClient;
 
 /*
  * 23.10.14

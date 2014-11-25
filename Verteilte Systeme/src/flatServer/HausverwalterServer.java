@@ -1,4 +1,4 @@
-package server;
+package flatServer;
 
 import org.apache.xmlrpc.server.PropertyHandlerMapping;
 import org.apache.xmlrpc.server.XmlRpcServer;
