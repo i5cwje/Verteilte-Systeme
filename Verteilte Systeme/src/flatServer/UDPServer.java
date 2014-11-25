@@ -1,4 +1,4 @@
-package server;
+package flatServer;
 /*
 	@author Pascal Bechtoldt, Can Kedik
 */
