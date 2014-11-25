@@ -23,9 +23,9 @@ public class XMLRPClient {
 		
 		while (true) {
 			sendTime += getDelta();
-			if (sendTime >= 104.1f) {
+			if (sendTime >= 2) {
 				sendTime = 0;
-				result = (String)client.execute("BananenSindLecker.updateMyFuckingTable",params); // Das hier führt scheinbar den RPC aus.
+				result = (String)client.execute("Hausverwalter.updateMyTable",params); // Das hier führt scheinbar den RPC aus.
 			}
 			System.out.println("Du wolltest ne Antwort hier hast du sie du Hurensohn: " + result);
 		}
