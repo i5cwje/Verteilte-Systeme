@@ -27,7 +27,7 @@ public class XMLRPClient {
 				sendTime = 0;
 				result = (String)client.execute("Hausverwalter.updateMyTable",params); // Das hier führt scheinbar den RPC aus.
 			}
-			System.out.println("Du wolltest ne Antwort hier hast du sie du Hurensohn: " + result);
+			System.out.println(" " + result);
 		}
 	}	
 
