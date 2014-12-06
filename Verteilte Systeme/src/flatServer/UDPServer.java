@@ -22,7 +22,7 @@ public class UDPServer extends Thread{
 	}
 	@SuppressWarnings("resource")
 	public void run(){
-		Logger logger = Logger.getLogger("MyLog");  
+		/*Logger logger = Logger.getLogger("MyLog");  
 	    FileHandler fh;  
 
 	    try {  
@@ -40,7 +40,7 @@ public class UDPServer extends Thread{
 	        e.printStackTrace();  
 	    } catch (IOException e) {  
 	        e.printStackTrace();  
-	    } 
+	    } */
         
         DatagramSocket socketUDP = null;
 		try {
@@ -70,7 +70,7 @@ public class UDPServer extends Thread{
 				e.printStackTrace();
 			}
 			connection.put(receivedText);
-		    logger.info(receivedText.trim()); 
+		    //logger.info(receivedText.trim()); 
         }
 	}
 }

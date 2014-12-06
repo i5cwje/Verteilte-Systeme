@@ -19,7 +19,10 @@ class Message {
 }
 	
 public class Connection {
-	Vector<Message> roomInformations;
+	private Vector<Message> roomInformations;
+	private int lowestTemperature = 0;
+	private int highestTemperature = 0;
+	private long maxPowerUsage = 0;
 	
 	public Connection() {
 		roomInformations = new Vector<Message>();
@@ -31,6 +34,15 @@ public class Connection {
 		int temperature = Integer.parseInt(parts[2]);
 		int powerUsage = Integer.parseInt(parts[3].trim());
 		//..
+		
+		//Variablen aktualisieren
+		if(temperature>highestTemperature){
+			highestTemperature = temperature;
+		}
+		if(temperature<lowestTemperature){
+			lowestTemperature = temperature;
+		}
+		maxPowerUsage += powerUsage;
 		
 		boolean setInfo = false;
 		for(int i=1; i<roomInformations.size(); i++)
@@ -54,5 +66,17 @@ public class Connection {
 	
 	public synchronized Vector<Message> get() {
 		return roomInformations;
+	}
+	
+	public synchronized int getHighest(){
+		return highestTemperature;
+	}
+	
+	public synchronized int getLowest(){
+		return lowestTemperature;
+	}
+	
+	public synchronized long getMaxPowerUsage(){
+		return maxPowerUsage;
 	}
 }
