@@ -20,8 +20,8 @@ public class UDPClient {
 	private static InetAddress destination;
 	private static DatagramSocket toSocket;
 	private static DatagramPacket packet;
-	private static int port = 9997;
-	private static String IP = "192.168.2.104";
+	private static int port = 9910;
+	private static String IP = "127.0.0.1";
 	private static String whereAmI;
 	private static int packetNumber = 0;
 
@@ -32,13 +32,9 @@ public class UDPClient {
 		toSocket = new DatagramSocket();
 		sendTime = 0;
 		whereAmI = args[0];
-		System.out.println(whereAmI);
-
-		System.out.println(sendTime + " " + packetNumber);
 		while (true) {
 			sendTime += getDelta();
-			System.out.println(sendTime + " " + packetNumber);
-			if (sendTime >= 104.1f) {
+			if (sendTime >= 1000) {
 				sendTime = 0;
 				packet.setData(giveRandomNumbers());
 				toSocket.send(packet);

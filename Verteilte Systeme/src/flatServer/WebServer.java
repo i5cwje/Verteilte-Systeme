@@ -17,6 +17,8 @@ import com.sun.net.httpserver.HttpServer;
 public class WebServer extends Thread{
 	static Connection connection = null;
 	private int PORT;
+	static int xmlPort = 0;
+	private static XMLServer cs = null;
 
 	public WebServer(Connection c, int port){
 		connection = c;

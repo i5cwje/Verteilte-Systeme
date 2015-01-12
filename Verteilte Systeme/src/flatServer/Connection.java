@@ -20,12 +20,13 @@ class Message {
 	
 public class Connection {
 	private Vector<Message> roomInformations;
-	private int lowestTemperature = 0;
+	private int lowestTemperature = 100;
 	private int highestTemperature = 0;
-	private long maxPowerUsage = 0;
+	private int maxPowerUsage = 0;
 	
 	public Connection() {
 		roomInformations = new Vector<Message>();
+		roomInformations.clear();
 	}
 		
 	public synchronized void put(String text) {
@@ -76,7 +77,7 @@ public class Connection {
 		return lowestTemperature;
 	}
 	
-	public synchronized long getMaxPowerUsage(){
+	public synchronized int getMaxPowerUsage(){
 		return maxPowerUsage;
 	}
 }
