@@ -27,11 +27,13 @@ public class UDPClient {
 
 	public static void main(String[] args) throws Exception {
 	//public UDPClient(String name) throws Exception{
+		IP = args[0];
+		port = Integer.parseInt(args[1]);
 		destination = InetAddress.getByName(IP);
 		packet = new DatagramPacket(giveRandomNumbers(), 2, destination, port);
 		toSocket = new DatagramSocket();
 		sendTime = 0;
-		whereAmI = args[0];
+		whereAmI = args[2];
 		while (true) {
 			sendTime += getDelta();
 			if (sendTime >= 1000) {

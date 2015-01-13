@@ -9,8 +9,8 @@ public class XMLClient {
     public static void main(String[] args) throws Exception {
         int xmlPort = 0;
         List<String> ports = new ArrayList<String>();
-           
-           for(int i=0;i<args.length;i++){
+        String IP = args[0];
+           for(int i=1;i<=args.length;i++){
                 ports.add(args[i]);
                 System.out.println(ports.get(i));
             }
@@ -27,7 +27,7 @@ public class XMLClient {
                     
                     XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
 
-                    config.setServerURL(new URL("http://127.0.0.1:"+xmlPort+"/xmlrpc"));
+                    config.setServerURL(new URL("http://"+IP+":"+xmlPort+"/xmlrpc"));
                     System.out.println(xmlPort);
                     XmlRpcClient client = new XmlRpcClient();
                     client.setConfig(config);
