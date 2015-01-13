@@ -10,9 +10,9 @@ public class XMLClient {
         int xmlPort = 0;
         List<String> ports = new ArrayList<String>();
         String IP = args[0];
-           for(int i=1;i<=args.length;i++){
+           for(int i=1;i<args.length;i++){
                 ports.add(args[i]);
-                System.out.println(ports.get(i));
+                System.out.println(ports.get(i-1));
             }
                
             
