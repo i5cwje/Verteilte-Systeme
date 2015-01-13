@@ -34,10 +34,6 @@ public class XMLServer extends Thread {
 	public String getData(){
 	    return ausgabe;
 	}
-	
-	public int getHighest(){
-		return connection.getHighest();
-	}
   
     public void buildString(){
         while(true){
