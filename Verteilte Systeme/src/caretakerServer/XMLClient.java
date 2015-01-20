@@ -10,12 +10,14 @@ import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
 import java.util.*;
 
 public class XMLClient extends Thread{
-	Vector<String> notifies;
+	private Vector<String> notifies;
 	private int xmlPort;
-	List<String> ports;
-	String IP;
+	private List<String> ports;
+	private String IP;
+	private Memory mem;
 
-	public void setReady(String[] args) {
+	public void setReady(String[] args, Memory memory) {
+		mem=memory;
 		xmlPort = 0;
 		ports = new ArrayList<String>();
 		if(args.length<0)
@@ -26,8 +28,10 @@ public class XMLClient extends Thread{
 		}
 	}
 
-	public void iDoWhatIDo(String housedata) {
+	public void iDoWhatIDo() {
 
+
+		String housdata = null;
 		while (true) {
 			for (int i = 1; i < ports.size(); i++) {
 				xmlPort = Integer.parseInt(ports.get(i));
@@ -50,7 +54,6 @@ public class XMLClient extends Thread{
 				client.setConfig(config);
 
 				Object[] params = new Object[] {};
-				String housdata = null;
 				try {
 					housdata = (String) client
 							.execute("XML.getData", params);
@@ -58,11 +61,11 @@ public class XMLClient extends Thread{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				housedata=housdata;
+				housdata="PAPAPAU";//housdata;
+				mem.setData(housdata);
 			}
 		}
 	}
-	public void run (String housedata){
-		iDoWhatIDo(housedata);
+	public void run (){
 	}
 }
