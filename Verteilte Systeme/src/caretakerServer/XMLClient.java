@@ -32,7 +32,7 @@ public class XMLClient extends Thread{
 
 		String housdata = null;
 		while (true) {
-			
+			housdata = "";
 			for (int i = 0; i < ports.size(); i++) {//wenn keine ports exisistieren geht er hier nicht rein und Papapau tritt nicht auf
 				xmlPort = Integer.parseInt(ports.get(i));
 				try {
@@ -54,15 +54,16 @@ public class XMLClient extends Thread{
 
 				Object[] params = new Object[] {};
 				try {
-					housdata = (String) client
+					housdata += (String) client
 							.execute("XML.getData", params);
 				} catch (XmlRpcException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				//housdata="PAPAPAU";//housdata // Funktioniert mit Constantem String funktioniert also auch mit Variablen der schon letztes mal funktioniert hat sonst suizid
-				mem.setHouseData(housdata);
+				//mem.setHouseData(housdata);
 			}
+			mem.setHouseData(housdata);
 		}
 	}
 	public void run (){

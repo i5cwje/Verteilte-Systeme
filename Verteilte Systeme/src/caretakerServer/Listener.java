@@ -46,9 +46,16 @@ public class Listener extends Thread {
 		destinations.addElement(tmp);
 		try {
 			while (listen) {// Hier ist das effektive empfangen
+				String body = "";
+				try {
+					Thread.sleep(1000); // 1000 milliseconds is one second.
+				} catch (InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
 				if (!mem.doIHaveToChangeMyDestinations().equals(destinations)) {
 					destinations = mem.doIHaveToChangeMyDestinations();
 				}
+				mem.setFlag(false);
 				for (int i = 0; i < destinations.size(); i++) {
 					if (destinations.get(i).equals(tmp)) {
 						continue;
@@ -66,12 +73,13 @@ public class Listener extends Thread {
 
 					Message msg = consumer.receive();
 					if (msg instanceof TextMessage) {
-						String body = ((TextMessage) msg).getText();
+						body += ((TextMessage) msg).getText();
 						mem.setNotMyHouseData(body); // Funktioniert
 					}
 
 					connection.close();
 				}
+				mem.setFlag(true);
 			}
 		} catch (JMSException e) {
 			// TODO logfile schreib kram

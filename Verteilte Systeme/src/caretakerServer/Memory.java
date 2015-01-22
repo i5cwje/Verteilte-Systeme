@@ -5,6 +5,7 @@ import java.util.Vector;
 public class Memory {
 	private String houseData;
 	private String notMyHouseData;
+	private Boolean flag;
 
 	private Vector<String> destinations;
 
@@ -12,6 +13,10 @@ public class Memory {
 		houseData = null;
 		destinations = new Vector<String>();
 		destinations.addElement("Hans"); //hans ists komisch ich weiß schau in listener
+	}
+	
+	public void setFlag(Boolean value){
+		flag = value;
 	}
 
 	public String getNotMyHouseData() { // Funktion die InfoControll
@@ -48,6 +53,30 @@ public class Memory {
 												// CamelCase // besser und man
 												// liests ja // dochrichtig.
 		destinations.add(dest);
+	}
+	
+	public void deleteDestination(String dest) {
+		while(true){
+			if(flag){
+				int position = -1;
+				for(int i=0; i<destinations.size(); i++){
+					if(destinations.elementAt(i).equals(dest)){
+						position = i;
+					}
+				}
+				if(position != -1){
+					destinations.remove(position);
+					notMyHouseData = "";
+				}
+				break;
+			}else{
+				try {
+					Thread.sleep(30); // 1000 milliseconds is one second.
+				} catch (InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
+			}
+		}
 	}
 
 	/**

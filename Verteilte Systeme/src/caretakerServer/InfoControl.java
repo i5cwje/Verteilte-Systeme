@@ -75,6 +75,10 @@ public class InfoControl {
 			}
 				break;
 			case "3":
+			{
+				System.out.println("Gib die ID, eines Publishers ein");
+				mem.deleteDestination(scanner.next());
+			}
 				break;
 			case "4":
 				if (notifications.size() == 0) {
