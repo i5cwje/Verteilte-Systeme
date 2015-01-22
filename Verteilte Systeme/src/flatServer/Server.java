@@ -1,6 +1,6 @@
 package flatServer;
 
-/*
+/**
 @author Pascal Bechtoldt
 */
 
@@ -12,6 +12,7 @@ public class Server {
 		int PortUDPServer = 0;
 		int PortXML = 0;
 		String whereIAm = "";
+		System.out.println("Bis hier hin und nicht weiter");
 		try{
 			PortUDPServer = Integer.parseInt(args[0]);
 			PortWebServer = Integer.parseInt(args[1]);
@@ -25,7 +26,7 @@ public class Server {
 		WebServer ws = new WebServer(b, PortWebServer);
 		UDPServer us = new UDPServer(b, PortUDPServer);
 		us.start();
-		ws.start();
+		//ws.start();
 		
 		XMLServer cs = new XMLServer();//Initalisiere  des XML Server
         cs.setPort(PortXML);

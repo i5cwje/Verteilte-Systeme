@@ -20,8 +20,8 @@ public class XMLClient extends Thread{
 		mem=memory;
 		xmlPort = 0;
 		ports = new ArrayList<String>();
-		if(args.length<0)
-		IP = args[0];
+		if(args.length>0)
+			IP = args[0];
 		for (int i = 1; i < args.length; i++) {
 			ports.add(args[i]);
 		//	System.out.println(ports.get(i - 1));
@@ -33,7 +33,7 @@ public class XMLClient extends Thread{
 		String housdata = null;
 		while (true) {
 			
-			for (int i = 1; i < ports.size(); i++) {//wenn keine ports exisistieren geht er hier nicht rein und Papapau tritt nicht auf
+			for (int i = 0; i < ports.size(); i++) {//wenn keine ports exisistieren geht er hier nicht rein und Papapau tritt nicht auf
 				xmlPort = Integer.parseInt(ports.get(i));
 				try {
 					Thread.sleep(1000); // 1000 milliseconds is one second.
@@ -49,7 +49,6 @@ public class XMLClient extends Thread{
 				} catch (MalformedURLException e) {
 					e.printStackTrace();
 				}
-				System.out.println(xmlPort);
 				XmlRpcClient client = new XmlRpcClient();
 				client.setConfig(config);
 
@@ -61,8 +60,7 @@ public class XMLClient extends Thread{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println("Hier bin ich auf jedem Fall");
-				housdata="PAPAPAU";//housdata // Funktioniert mit Constantem String funktioniert also auch mit Variablen der schon letztes mal funktioniert hat sonst suizid
+				//housdata="PAPAPAU";//housdata // Funktioniert mit Constantem String funktioniert also auch mit Variablen der schon letztes mal funktioniert hat sonst suizid
 				mem.setHouseData(housdata);
 			}
 		}

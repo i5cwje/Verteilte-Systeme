@@ -97,9 +97,9 @@ public class Publisher extends Thread {
 	}
 
 	private String arg(String[] args, int index, String defaultValue) {
-		if (index < args.length)
+		/*if (index < args.length)
 			return args[index];
-		else
+		else*/
 			return defaultValue;
 	}
 

@@ -56,13 +56,9 @@ public class XMLServer extends Thread {
             ausgabe += "Stromverbrauch " + maxPower + "\n" 
                     + "Minimale Temperatur " + minTemp + "\n"
                     + "Maximale Temperatur " + maxTemp + "\n";
-            System.out.println(ausgabe);
-            
+            //System.out.println(ausgabe);
         }
     }
-    
- 
-
  
 
   public void run(){
