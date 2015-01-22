@@ -92,6 +92,9 @@ public class InfoControl {
 			}
 		}
 		scanner.close();
+		listen.stop();
+		client.stop();
+		publisher.stop();
 	}
 
 }

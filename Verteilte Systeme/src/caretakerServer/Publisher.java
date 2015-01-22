@@ -17,6 +17,7 @@ public class Publisher extends Thread {
 
 	private final int MESSAGES = 10000;
 	private final int SIZE = 256;
+	private final String NAME="Can";
 
 	private Memory mem;
 	private String body = null;
@@ -26,9 +27,11 @@ public class Publisher extends Thread {
 	}
 
 	public void setReady(Memory memory, String[] args) {
-
-		destination = arg(args, 0, "event");
+		int publishNumber =  (int) (Math.random()*30);
+		destination = arg(args, 0, Integer.toString(publishNumber));
 		mem = memory;
+		System.out.println("Name: "+ NAME + "\nPublish ID: "+ publishNumber);
+		
 	}
 
 	public void publish() {
@@ -40,7 +43,7 @@ public class Publisher extends Thread {
 			Connection connection;
 
 			body = mem.getHouseData();
-			body = "eventblablabla";
+			//body = "eventblabla";
 			if (body != null) {
 				try {
 					connection = factory.createConnection(user, password);
@@ -56,9 +59,8 @@ public class Publisher extends Thread {
 						TextMessage msg = session.createTextMessage(body);
 						msg.setIntProperty("id", i);
 						producer.send(msg);
-						
 					}
-
+					
 					producer.send(session.createTextMessage("SHUTDOWN"));
 					connection.close();
 				} catch (JMSException e) {
