@@ -20,9 +20,7 @@ class Message {
 	
 public class Connection {
 	private Vector<Message> roomInformations;
-	private int lowestTemperature = 100;
-	private int highestTemperature = 0;
-	private int maxPowerUsage = 0;
+	
 	
 	public Connection() {
 		roomInformations = new Vector<Message>();
@@ -36,14 +34,6 @@ public class Connection {
 		int powerUsage = Integer.parseInt(parts[3].trim());
 		//..
 		
-		//Variablen aktualisieren
-		if(temperature>highestTemperature){
-			highestTemperature = temperature;
-		}
-		if(temperature<lowestTemperature){
-			lowestTemperature = temperature;
-		}
-		maxPowerUsage += powerUsage;
 		
 		boolean setInfo = false;
 		for(int i=1; i<roomInformations.size(); i++)
@@ -70,14 +60,32 @@ public class Connection {
 	}
 	
 	public synchronized int getHighest(){
+		int highestTemperature = 0;	
+		for(int i=0; i<roomInformations.size(); i++){
+			if(highestTemperature < roomInformations.elementAt(i).temperature){
+				highestTemperature = roomInformations.elementAt(i).temperature;
+			}
+		}	
 		return highestTemperature;
 	}
 	
 	public synchronized int getLowest(){
+		int lowestTemperature = 0;
+		for(int i=0; i<roomInformations.size(); i++){
+			if(lowestTemperature < roomInformations.elementAt(i).temperature){
+				lowestTemperature = roomInformations.elementAt(i).temperature;
+			}
+		}
 		return lowestTemperature;
 	}
 	
 	public synchronized int getMaxPowerUsage(){
+		int maxPowerUsage = 0;
+		for(int i=0; i<roomInformations.size(); i++){
+			if(maxPowerUsage < roomInformations.elementAt(i).powerUsage){
+				maxPowerUsage = roomInformations.elementAt(i).powerUsage;
+			}
+		}
 		return maxPowerUsage;
 	}
 }

@@ -16,7 +16,7 @@ public class XMLServer extends Thread {
    static int maxPower = 0;
    static int minTemp = 0;
    static int maxTemp = 0;
- 
+   static int requestCount = 0;
   
   
 	public void setConnection(Connection c){
@@ -32,6 +32,8 @@ public class XMLServer extends Thread {
 	}
 	
 	public String getData(){
+		ausgabe += "Request "+requestCount;
+		requestCount++;
 	    return ausgabe;
 	}
   
