@@ -10,7 +10,11 @@ import java.util.Vector;
  * 
  * 
  * */
-public class InfoControl extends Thread {
+
+/**
+ * IP des ActiveMQ Incubator 
+ *@see 192.168.2.101*/
+public class InfoControl {
 
 	private static final String MYUSELESSERRORMESSAGE = "Eingabe unklar penis "
 			+ "steckt im Monitor fest";
@@ -25,11 +29,15 @@ public class InfoControl extends Thread {
 	public static void main(String[] args) {
 		mem=new Memory();
 		listen = new Listener();
+		listen.setReady(mem, args);
 		publisher = new Publisher();
+		publisher.setReady(mem, args);
 		scanner = new Scanner(System.in);
 		client = new XMLClient();
 		client.setReady(args, mem);
 		client.start();
+		listen.start();
+		publisher.start();
 
 		menue();
 	}
@@ -55,10 +63,16 @@ public class InfoControl extends Thread {
 				break;
 			}
 			case "1":{
-				System.out.println(mem.getData());
+				System.out.println(mem.getHouseData());
+				System.out.println("Nicht meine Häuser");
+				System.out.println(mem.getNotMyHouseData());
 				break;
 			}
 			case "2":
+			{
+				System.out.println("Gib die ID, eines Publishers ein");
+				mem.addAnDestination(scanner.next());
+			}
 				break;
 			case "3":
 				break;

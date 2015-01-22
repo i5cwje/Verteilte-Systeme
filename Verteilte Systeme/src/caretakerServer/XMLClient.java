@@ -30,10 +30,10 @@ public class XMLClient extends Thread{
 
 	public void iDoWhatIDo() {
 
-
 		String housdata = null;
 		while (true) {
-			for (int i = 1; i < ports.size(); i++) {
+			
+			for (int i = 1; i < ports.size(); i++) {//wenn keine ports exisistieren geht er hier nicht rein und Papapau tritt nicht auf
 				xmlPort = Integer.parseInt(ports.get(i));
 				try {
 					Thread.sleep(1000); // 1000 milliseconds is one second.
@@ -61,11 +61,13 @@ public class XMLClient extends Thread{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				housdata="PAPAPAU";//housdata;
-				mem.setData(housdata);
+				System.out.println("Hier bin ich auf jedem Fall");
+				housdata="PAPAPAU";//housdata // Funktioniert mit Constantem String funktioniert also auch mit Variablen der schon letztes mal funktioniert hat sonst suizid
+				mem.setHouseData(housdata);
 			}
 		}
 	}
 	public void run (){
+		iDoWhatIDo();
 	}
 }
